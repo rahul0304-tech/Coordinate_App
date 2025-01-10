@@ -41,7 +41,7 @@ export async function saveUserToDB(user: {
   accountId: string;
   email: string;
   name: string;
-  imageUrl: string  || URL;
+  imageUrl: URL;
   username?: string;
 }) {
   try {
