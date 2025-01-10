@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="100" viewBox="0 0 300 100" fill="none">
+  <!-- Compass Circle -->
+  <circle cx="50" cy="50" r="40" stroke="#4CAF50" stroke-width="4" fill="none" />
+  <!-- North Pointer -->
+  <polygon points="50,10 55,40 50,30 45,40" fill="#4CAF50" />
+  <!-- South Pointer -->
+  <polygon points="50,90 55,60 50,70 45,60" fill="#4CAF50" />
+  <!-- East Pointer -->
+  <polygon points="90,50 60,55 70,50 60,45" fill="#4CAF50" />
+  <!-- West Pointer -->
+  <polygon points="10,50 40,55 30,50 40,45" fill="#4CAF50" />
+  <!-- Text -->
+  <text x="100" y="55" font-family="Arial, sans-serif" font-size="30" fill="#4CAF50" font-weight="bold">
+    Coordinate
+  </text>
+</svg>
