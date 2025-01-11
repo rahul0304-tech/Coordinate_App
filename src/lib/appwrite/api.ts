@@ -179,13 +179,15 @@ export async function uploadFile(file: File) {
 // ============================== GET FILE URL
 export function getFilePreview(fileId: string) {
   try {
-    const fileUrl = storage.getFilePreview(
-      appwriteConfig.storageId,
-      fileId,
-      2000,
-      2000,
-      gravity: "top",
-      100
+     const fileUrl = storage.getFilePreview(
+      appwriteConfig.storageId, // Bucket ID
+      fileId,                   // File ID
+      {
+        width: 2000,            // Width of the image in pixels
+        height: 2000,           // Height of the image in pixels
+        gravity: "top",         // Gravity setting for cropping
+        quality: 100,           // Image quality (1-100)
+      }
     );
 
     if (!fileUrl) throw Error;
