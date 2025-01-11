@@ -26,7 +26,7 @@ export async function createUserAccount(user: INewUser) {
       name: newAccount.name,
       email: newAccount.email,
       username: user.username,
-      imageUrl: avatarUrl.toString(),
+      imageUrl: avatarUrl,
     });
 
     return newUser;
@@ -41,7 +41,7 @@ export async function saveUserToDB(user: {
   accountId: string;
   email: string;
   name: string;
-  imageUrl: string;
+  imageUrl: URL;
   username?: string;
 }) {
   try {
@@ -61,7 +61,7 @@ export async function saveUserToDB(user: {
 // ============================== SIGN IN
 export async function signInAccount(user: { email: string; password: string }) {
   try {
-    const session = await account.createEmailPasswordSession(user.email, user.password);
+    const session = await account.createEmailSession(user.email, user.password);
 
     return session;
   } catch (error) {
@@ -179,15 +179,13 @@ export async function uploadFile(file: File) {
 // ============================== GET FILE URL
 export function getFilePreview(fileId: string) {
   try {
-     const fileUrl = storage.getFilePreview(
-      appwriteConfig.storageId, // Bucket ID
-      fileId,                   // File ID
-      {
-        width: 2000,            // Width of the image in pixels
-        height: 2000,           // Height of the image in pixels
-        gravity: "top",         // Gravity setting for cropping
-        quality: 100,           // Image quality (1-100)
-      }
+    const fileUrl = storage.getFilePreview(
+      appwriteConfig.storageId,
+      fileId,
+      2000,
+      2000,
+      "top",
+      100
     );
 
     if (!fileUrl) throw Error;
