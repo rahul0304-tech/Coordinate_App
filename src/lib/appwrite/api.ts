@@ -19,14 +19,14 @@ export async function createUserAccount(user: INewUser) {
 
     if (!newAccount) throw Error;
 
-    const avatarUrl = new URL(avatars.getInitials(user.name));
+    const avatarUrl = avatars.getInitials(user.name);
 
     const newUser = await saveUserToDB({
       accountId: newAccount.$id,
       name: newAccount.name,
       email: newAccount.email,
       username: user.username,
-      imageUrl: avatarUrl,
+      imageUrl: avatarUrl.toString(),
     });
 
     return newUser;
@@ -61,7 +61,7 @@ export async function saveUserToDB(user: {
 // ============================== SIGN IN
 export async function signInAccount(user: { email: string; password: string }) {
   try {
-    const session = await account.createEmailSession(user.email, user.password);
+    const session = await account.createEmailPasswordSession(user.email, user.password);
 
     return session;
   } catch (error) {
@@ -184,7 +184,7 @@ export function getFilePreview(fileId: string) {
       fileId,
       2000,
       2000,
-      "top",
+      gravity: "top",
       100
     );
 
